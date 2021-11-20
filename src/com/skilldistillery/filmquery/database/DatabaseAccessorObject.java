@@ -130,21 +130,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film film;
 		String user = "student";
 		String pass = "student";
+		Actor actor;
+		List<Actor> listOfActors = new ArrayList<>();
 		
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, language.name FROM film JOIN language ON film.language_id = language.id WHERE title LIKE ? OR description LIKE ?";
+			String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name, actor.first_name, actor.last_name, actor.id FROM film JOIN language ON film.language_id = language.id JOIN film_actor ON film.id = film_actor.film_id JOIN actor ON film_actor.actor_id = actor.id WHERE title LIKE ? OR description LIKE ?";
+
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
 			stmt.setString(2, "%" + keyword + "%");
 			ResultSet filmSet = stmt.executeQuery();
 			
 			while(filmSet.next()) {
+				actor = new Actor(filmSet.getInt("actor.id"), filmSet.getString("actor.first_name"), filmSet.getString("actor.last_name"));
+				listOfActors.add(actor);
+				
 				film = new Film(filmSet.getInt("film.id"), filmSet.getString("title"), filmSet.getString("description"), filmSet.getInt("release_year"),
 						filmSet.getInt("language_id"), filmSet.getInt("rental_duration"), filmSet.getDouble("rental_rate"),
 						filmSet.getInt("length"), filmSet.getDouble("replacement_cost"), filmSet.getString("rating"),
 						filmSet.getString("special_features"), filmSet.getString("language.name"));
 				
+				film.setActors(listOfActors);
 				filteredFilms.add(film);
 			}
 			filmSet.close();
