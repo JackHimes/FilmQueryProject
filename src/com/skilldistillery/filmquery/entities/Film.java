@@ -14,14 +14,14 @@ public class Film {
 	private int length;
 	private double replacementCost;
 	private String rating;
-	private String special_features; //Maybe need to be changed??
+	private String special_features; 
+	private String language;
 	private List<Actor> actors;
 	
 	
 	
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String special_features,
-			List<Actor> actors) {
+			double rentalRate, int length, double replacementCost, String rating, String special_features, String language) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -34,7 +34,7 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.special_features = special_features;
-		this.actors = actors;
+		this.language = language;
 	}
 	public int getId() {
 		return id;
@@ -108,12 +108,20 @@ public class Film {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
+	
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", special_features=" + special_features + ", actors=" + actors + "]";
+		return "\n ------------------------------- \nFilm Title: " + title  + "\nYear Released: " 
+				+ releaseYear + "\nRating: " + rating 
+				+ "\nMovie description: " + description
+				+ "\nLanguage: " + language
+				+ "\nCast of Actors: " + actors;
 	}
 	@Override
 	public int hashCode() {
