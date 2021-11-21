@@ -2,6 +2,7 @@ package com.skilldistillery.filmquery.entities;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Film {
 	private int id;
@@ -117,7 +118,7 @@ public class Film {
 	}
 	@Override
 	public String toString() {
-		return "\n ------------------------------- \nFilm Title: " + title  + "\nYear Released: " 
+		return "\n------------------------------------ \nFilm Title: " + title  + "\nYear Released: " 
 				+ releaseYear + "\nRating: " + rating 
 				+ "\nMovie description: " + description
 				+ "\nLanguage: " + language

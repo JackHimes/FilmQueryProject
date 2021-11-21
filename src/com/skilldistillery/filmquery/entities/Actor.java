@@ -7,7 +7,7 @@ public class Actor {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private List<Film> films;
+//	private List<Film> films;
 	
 	
 
@@ -46,17 +46,10 @@ public class Actor {
 		this.lastName = lastName;
 	}
 
-	public List<Film> getFilms() {
-		return films;
-	}
-
-	public void setFilms(List<Film> films) {
-		this.films = films;
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(films, firstName, id, lastName);
+		return Objects.hash(firstName, id, lastName);
 	}
 
 	@Override
@@ -68,13 +61,12 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		return Objects.equals(films, other.films) && Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName);
+		return Objects.equals(firstName, other.firstName) && id == other.id && Objects.equals(lastName, other.lastName);
 	}
 
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", films=" + films + "]";
+		return "\n-----------\nActor Name: " + firstName + " " + lastName + "\nID: " + id ;
 	}
 
 }

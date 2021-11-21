@@ -1,8 +1,10 @@
 package com.skilldistillery.filmquery.app;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
@@ -74,7 +76,9 @@ public class FilmQueryApp {
 					String keyword = input.nextLine();
 					filteredFilms = db.searchByKeyword(keyword);
 					if (filteredFilms.size() != 0) {
-						System.out.println(filteredFilms);
+						for (Film film : filteredFilms) {
+							System.out.println(film);
+						}
 						
 					}else {
 						System.out.println("No films contain those keywords");
